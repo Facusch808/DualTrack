@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="DualTrack.MainWindow"
+        Title="DualTrack">
+    
+    
+
+    
+    
+<StackPanel>
+    
+    <Button Margin="15" Click="Procesar" >Procesar video</Button>
+
+    <Button HorizontalAlignment="Center" Margin="20" Click="Vd_a_ext_audio_lat" Name="Selecionar_Video_a_extraer">
+         Selecionar Video a extraer</Button>
+    <TextBox Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Name="latino"/>
+
+    <Button HorizontalAlignment="Center" Margin="70" Click="Vd_a_ins_audio_ing" Name="Selecionar_Video_a_insertar"> 
+        Selecionar Video a insertar</Button>
+    <TextBox Margin="70" HorizontalAlignment="Center" VerticalAlignment="Center" Name="ingles"/>
+
+    <TextBlock Margin="30">Inserte la ruta de destino</TextBlock>
+    <TextBox Margin="30" Name="rutadestino"/>
+     <TextBlock Margin="30" Name="estado">Procesamiento todavia no iniciado</TextBlock>
+    
+</StackPanel>
+    
+</Window>
