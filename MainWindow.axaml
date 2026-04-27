@@ -5,14 +5,9 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="DualTrack.MainWindow"
         Title="DualTrack">
-    
-    
-
-    
-
 <StackPanel Spacing="5">
    
-    <Button Margin="7" CornerRadius="8" Foreground="#a30808" Background="#1E1E1E" Click="Procesar" >Procesar video</Button>
+    <Button Margin="7" FontSize="15" CornerRadius="8" Foreground="#a30808" Background="#1E1E1E" Click="Procesar" >Procesar video</Button>
     
 
    
@@ -36,8 +31,9 @@
     <Border Background="#1E1E1E" CornerRadius="10" Padding="5">
     <StackPanel>
     <TextBlock>Inserte la ruta de destino</TextBlock>
-    <TextBox CornerRadius="8" Name="rutadestino" Text="~/Escritorio"/>
-    <TextBlock Name="estado">Procesamiento todavia no iniciado</TextBlock>
+    <TextBox CornerRadius="8" Name="rutadestino"/>
+    <TextBlock FontSize="15" FontWeight="Bold" Foreground="DarkOrange" Name="estado">Procesamiento todavia no iniciado</TextBlock>
+    <ProgressBar x:Name="barraProgreso" IsIndeterminate="false"/>
     </StackPanel>
     </Border>
 </StackPanel>

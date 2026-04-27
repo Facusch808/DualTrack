@@ -6,16 +6,19 @@ using System.Diagnostics;
 using Microsoft.VisualBasic;
 using System.IO;
 using System.Threading.Tasks;
+using Avalonia.Media;
 namespace DualTrack;
 
 
 public partial class MainWindow : Window
 {   
     string RutaFinal= "";
-    string Mp4Mkv="";
+    bool Mp4Mkv=false;
     string idioma= "";
     string RutaLat="";
     string RutaEn="";
+    
+
     public MainWindow()
     {
         InitializeComponent();
@@ -83,8 +86,10 @@ public partial class MainWindow : Window
             
             ComparacionDeVideos();
             await Task.Delay(1000);
-            if(Mp4Mkv=="si"){
+            if(Mp4Mkv==true){
+            barraProgreso.IsIndeterminate = true;
             estado.Text="Procesando...";
+            await Task.Delay(1000);
             var ffmpeg_ejecucion = new Process();
             ffmpeg_ejecucion.StartInfo.FileName = "ffmpeg";
             ffmpeg_ejecucion.StartInfo.Arguments =
@@ -104,6 +109,9 @@ public partial class MainWindow : Window
         //string log = ffmpeg_ejecucion.StandardError.ReadToEnd();
         //log_.Text= log;
         estado.Text="Proceso terminado, su video se a exportado en la ruta destino";
+        barraProgreso.IsIndeterminate = false;
+        barraProgreso.Value = 100;
+
             }
             else
             {
@@ -121,7 +129,7 @@ public partial class MainWindow : Window
     {
         if((Path.GetExtension(RutaLat).ToLower() == ".mp4" || Path.GetExtension(RutaLat).ToLower() == ".mkv")  && (Path.GetExtension(RutaEn).ToLower() == ".mp4" || Path.GetExtension(RutaEn).ToLower() == ".mkv"))
         {
-            Mp4Mkv="si";
+            Mp4Mkv=true;
 
             if (Path.GetExtension(RutaLat).ToLower() == ".mp4" && Path.GetExtension(RutaEn).ToLower() == ".mp4")
              {
@@ -166,7 +174,7 @@ public partial class MainWindow : Window
         }
         else
         {
-            Mp4Mkv="no";
+            Mp4Mkv=false;
         }
         
     }
