@@ -9,23 +9,37 @@
     
 
     
-    
-<StackPanel>
-    
-    <Button Margin="15" Click="Procesar" >Procesar video</Button>
 
-    <Button HorizontalAlignment="Center" Margin="20" Click="Vd_a_ext_audio_lat" Name="Selecionar_Video_a_extraer">
-         Selecionar Video a extraer</Button>
-    <TextBox Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Name="latino"/>
-
-    <Button HorizontalAlignment="Center" Margin="70" Click="Vd_a_ins_audio_ing" Name="Selecionar_Video_a_insertar"> 
-        Selecionar Video a insertar</Button>
-    <TextBox Margin="70" HorizontalAlignment="Center" VerticalAlignment="Center" Name="ingles"/>
-
-    <TextBlock Margin="30">Inserte la ruta de destino</TextBlock>
-    <TextBox Margin="30" Name="rutadestino"/>
-     <TextBlock Margin="30" Name="estado">Procesamiento todavia no iniciado</TextBlock>
+<StackPanel Spacing="5">
+   
+    <Button Margin="7" CornerRadius="8" Foreground="#a30808" Background="#1E1E1E" Click="Procesar" >Procesar video</Button>
     
+
+   
+        <StackPanel>    
+        <Button Background="#1E1E1E" CornerRadius="8" Padding="5" HorizontalAlignment="Left" Click="Vd_a_ext_audio_lat">
+        Selecionar Video a extraer
+        </Button>
+        <TextBox CornerRadius="8" HorizontalAlignment="Center" Width="700" Name="latino"/>
+        </StackPanel>
+    
+
+   
+        <StackPanel>    
+        <Button Background="#1E1E1E" CornerRadius="8" Padding="5" HorizontalAlignment="Left" Click="Vd_a_ins_audio_ing">
+        Selecionar Video a insertar
+        </Button>
+        <TextBox CornerRadius="8" HorizontalAlignment="Center" Width="700" Name="ingles"/>
+        </StackPanel>
+    
+
+    <Border Background="#1E1E1E" CornerRadius="10" Padding="5">
+    <StackPanel>
+    <TextBlock>Inserte la ruta de destino</TextBlock>
+    <TextBox CornerRadius="8" Name="rutadestino" Text="~/Escritorio"/>
+    <TextBlock Name="estado">Procesamiento todavia no iniciado</TextBlock>
+    </StackPanel>
+    </Border>
 </StackPanel>
     
 </Window>
