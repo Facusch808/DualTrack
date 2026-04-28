@@ -13,7 +13,7 @@ Dual Track es una aplicación para extraer e insertar pistas de audio combinado 
 * sudo apt install ffmpeg
 ***
 ### Instalación
-### [DualTrack Releases](https://github.com/Facusch808/DualTrack/releases/tag/v1)
+### [DualTrack Releases](https://github.com/Facusch808/DualTrack/releases)
 * wget https://github.com/Facusch808/DualTrack/releases/download/v1/DualTrack.deb
 * cd (en la carpeta donde lo descargaste, generalmente descargas)
 * sudo dkpg -i DualTrack.deb
