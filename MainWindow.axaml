@@ -30,7 +30,9 @@
 
     <Border Background="#1E1E1E" CornerRadius="10" Padding="5">
     <StackPanel>
-    <TextBlock>Inserte la ruta de destino</TextBlock>
+    <Button Background="#0C0C0C" CornerRadius="8" Padding="5" HorizontalAlignment="Left" Click="SelecionCarpeta">
+    Inserte la ruta de destino
+    </Button>
     <TextBox CornerRadius="8" Name="rutadestino"/>
     <TextBlock FontSize="15" FontWeight="Bold" Foreground="DarkOrange" Name="estado">Procesamiento todavia no iniciado</TextBlock>
     <ProgressBar x:Name="barraProgreso" IsIndeterminate="false"/>

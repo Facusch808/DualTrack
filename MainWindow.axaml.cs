@@ -17,6 +17,7 @@ public partial class MainWindow : Window
     string idioma= "";
     string RutaLat="";
     string RutaEn="";
+
     
 
     public MainWindow()
@@ -33,6 +34,30 @@ public partial class MainWindow : Window
     {
         idioma="en";
         SelecionDeArchivo();
+    }
+
+    public async void SelecionCarpeta(object? sender, RoutedEventArgs e)
+    {
+        var VentActual = TopLevel.GetTopLevel(this); // establece la ventana en la que
+
+        if (VentActual == null) // por si es nulo q no rompa todo
+        {
+            return;
+        }
+
+        var carpeta = await VentActual.StorageProvider.OpenFolderPickerAsync(
+            new FolderPickerOpenOptions
+            {
+                 Title = "Seleccionar carpeta",
+                AllowMultiple = false
+            });
+            var semiRuta = carpeta.FirstOrDefault(); //agrarra de carpeta, osea la seleccion q hiciste y toma la primera.
+        if (semiRuta != null) // comprueba si seleccionaste algo, xq sino rompe todo
+        {
+            RutaFinal = semiRuta.Path.LocalPath; //agarra esa carpeta q tenes y le saca la ruta, de ahi lo convierte a un valor q pueda meter en un string
+            RutaFinal = RutaFinal.Substring(0,RutaFinal.Length-1);
+            rutadestino.Text = RutaFinal;
+        }
     }
 
     public async void SelecionDeArchivo()
@@ -72,20 +97,20 @@ public partial class MainWindow : Window
     public async void Procesar(object? sender, RoutedEventArgs e)
     {
         estado.Text="Iniciando proceso";
-        await Task.Delay(1000);
+        //await Task.Delay(1000);
 
         if (rutadestino == null)
         {
             return;
         }
         RutaFinal = rutadestino.Text + "/salida.mp4";
-        rutadestino.Text= RutaFinal;
+        //rutadestino.Text= RutaFinal;
         //RutaFinal= "/home/facu-sch/Escritorio/salida.mp4";
         if(RutaEn!="" && RutaLat != "" && RutaFinal!="")
         {
             
             ComparacionDeVideos();
-            await Task.Delay(1000);
+           // await Task.Delay(1000);
             if(Mp4Mkv==true){
             barraProgreso.IsIndeterminate = true;
             estado.Text="Procesando...";
@@ -105,7 +130,8 @@ public partial class MainWindow : Window
         ffmpeg_ejecucion.StartInfo.RedirectStandardError = true;
         ffmpeg_ejecucion.StartInfo.CreateNoWindow = true;
         ffmpeg_ejecucion.Start();
-        ffmpeg_ejecucion.WaitForExit();
+        await ffmpeg_ejecucion.WaitForExitAsync();
+        //ffmpeg_ejecucion.WaitForExit();
         //string log = ffmpeg_ejecucion.StandardError.ReadToEnd();
         //log_.Text= log;
         estado.Text="Proceso terminado, su video se a exportado en la ruta destino";
@@ -143,7 +169,7 @@ public partial class MainWindow : Window
             if(Path.GetExtension(RutaLat).ToLower() == ".mp4")
             {
                 estado.Text="Iniciando conversion a mkv";
-                await Task.Delay(1000);
+                //await Task.Delay(1000);
                 string VideoConvertidoMKV = Path.ChangeExtension(RutaLat, ".mkv");
                 var Conversion = new Process();
                 Conversion.StartInfo.FileName = "ffmpeg";
@@ -151,14 +177,15 @@ public partial class MainWindow : Window
                 Conversion.StartInfo.UseShellExecute = false;
                 Conversion.StartInfo.CreateNoWindow = true;
                 Conversion.Start();
-                Conversion.WaitForExit();
+                await Conversion.WaitForExitAsync();
+                //Conversion.WaitForExit();
                 RutaLat=VideoConvertidoMKV;
                 
             }
             if(Path.GetExtension(RutaEn).ToLower() == ".mp4")
             {
                 estado.Text="Iniciando conversion a mkv";
-                await Task.Delay(1000);
+                //await Task.Delay(1000);
                 string VideoConvertidoMKV = Path.ChangeExtension(RutaEn, ".mkv");
                 var Conversion = new Process();
                 Conversion.StartInfo.FileName = "ffmpeg";
@@ -166,7 +193,8 @@ public partial class MainWindow : Window
                 Conversion.StartInfo.UseShellExecute = false;
                 Conversion.StartInfo.CreateNoWindow = true;
                 Conversion.Start();
-                Conversion.WaitForExit();
+                await Conversion.WaitForExitAsync();
+                //Conversion.WaitForExit();
                 RutaEn=VideoConvertidoMKV;
                
             }
