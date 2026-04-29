@@ -148,6 +148,7 @@ public partial class MainWindow : Window
         {
             latino.Text="no se a selecionado nada";
             ingles.Text="no se a selecionado nada";
+            estado.Text="Faltaron archivos...";
         }
     }
 
